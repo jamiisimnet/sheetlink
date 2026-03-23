@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Nexus Dashboard | Quantum Sheets Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="glass-orb"></div>
+    <div class="grid-bg"></div>
+    
+    <div class="app-container">
+        <!-- SIDEBAR / NAVIGATION FUTURISTIC -->
+        <aside class="neo-sidebar">
+            <div class="logo-area">
+                <div class="hologram-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <span class="logo-text">SHEET<span class="glow">LINK</span></span>
+                <div class="status-pulse"></div>
+            </div>
+            <nav class="nav-links">
+                <div class="nav-item active" data-tab="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Quantum View</span>
+                    <div class="nav-indicator"></div>
+                </div>
+                <div class="nav-item" data-tab="users">
+                    <i class="fas fa-id-card"></i>
+                    <span>Users Vault</span>
+                </div>
+                <div class="nav-item" data-tab="mexc">
+                    <i class="fas fa-chart-simple"></i>
+                    <span>MEXC Nexus</span>
+                </div>
+                <div class="nav-item" data-tab="emails">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email Core</span>
+                </div>
+                <div class="nav-item" data-tab="settings">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Sheets Config</span>
+                </div>
+            </nav>
+            <div class="cyber-footer">
+                <div class="data-stream"></div>
+                <p>v2.0 | encrypted link</p>
+            </div>
+        </aside>
+
+        <!-- MAIN DASHBOARD CONTENT -->
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="page-title" id="pageTitle">Quantum Dashboard</div>
+                <div class="connection-badge" id="connectionStatus">
+                    <i class="fas fa-plug"></i> <span>Disconnected</span>
+                </div>
+            </div>
+
+            <!-- DASHBOARD TAB (OVERVIEW) -->
+            <div id="dashboardTab" class="tab-content active-tab">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3>Total Users</h3>
+                            <div class="stat-number" id="totalUsers">0</div>
+                        </div>
+                        <div class="glow-effect"></div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <div class="stat-info">
+                            <h3>MEXC Accounts</h3>
+                            <div class="stat-number" id="totalMexc">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-inbox"></i></div>
+                        <div class="stat-info">
+                            <h3>Email Creds</h3>
+                            <div class="stat-number" id="totalEmails">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-database"></i></div>
+                        <div class="stat-info">
+                            <h3>Sync Status</h3>
+                            <div class="stat-number" id="syncStatus">--</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-panel">
+                    <div class="section-header">
+                        <i class="fas fa-waveform"></i> <span>Live Data Stream</span>
+                    </div>
+                    <div class="data-preview">
+                        <div class="preview-card">
+                            <h4>📋 Recent Users</h4>
+                            <div id="previewUsersList" class="preview-list">-</div>
+                        </div>
+                        <div class="preview-card">
+                            <h4>⚡ MEXC Accounts</h4>
+                            <div id="previewMexcList" class="preview-list">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- USERS TAB -->
+            <div id="usersTab" class="tab-content">
+                <div class="data-section">
+                    <div class="action-bar">
+                        <button class="btn-primary" id="addUserBtn"><i class="fas fa-plus-circle"></i> New User</button>
+                        <button class="btn-outline sync-sheet-btn" data-sheet="users"><i class="fas fa-cloud-upload-alt"></i> Push to Sheets</button>
+                        <button class="btn-outline fetch-sheet-btn" data-sheet="users"><i class="fas fa-download"></i> Fetch from Sheets</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="cyber-table" id="usersTable">
+                            <thead>
+                                <tr><th>Name</th><th>ID Number</th><th>Date of Birth</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody id="usersTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEXC ACCOUNT TAB -->
+            <div id="mexcTab" class="tab-content">
+                <div class="data-section">
+                    <div class="action-bar">
+                        <button class="btn-primary" id="addMexcBtn"><i class="fas fa-plus-circle"></i> Add MEXC Account</button>
+                        <button class="btn-outline sync-sheet-btn" data-sheet="mexc"><i class="fas fa-cloud-upload-alt"></i> Push to Sheets</button>
+                        <button class="btn-outline fetch-sheet-btn" data-sheet="mexc"><i class="fas fa-download"></i> Fetch from Sheets</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="cyber-table" id="mexcTable">
+                            <thead><tr><th>Name</th><th>Email Account</th><th>Password</th><th>Wallet</th><th>Wealthreel Account</th><th>Wealthreel Pass</th><th>Actions</th></tr></thead>
+                            <tbody id="mexcTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMAILS TAB -->
+            <div id="emailsTab" class="tab-content">
+                <div class="data-section">
+                    <div class="action-bar">
+                        <button class="btn-primary" id="addEmailBtn"><i class="fas fa-plus-circle"></i> Add Email Credential</button>
+                        <button class="btn-outline sync-sheet-btn" data-sheet="emails"><i class="fas fa-cloud-upload-alt"></i> Push to Sheets</button>
+                        <button class="btn-outline fetch-sheet-btn" data-sheet="emails"><i class="fas fa-download"></i> Fetch from Sheets</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="cyber-table" id="emailsTable">
+                            <thead><tr><th>Email</th><th>Password</th><th>Actions</th></tr></thead>
+                            <tbody id="emailsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS / GOOGLE SHEETS CONFIG -->
+            <div id="settingsTab" class="tab-content">
+                <div class="config-panel">
+                    <div class="config-header">
+                        <i class="fas fa-robot"></i> Google Sheets Integration
+                        <span class="chip">Web App Bridge</span>
+                    </div>
+                    <div class="config-form">
+                        <div class="input-group">
+                            <label><i class="fas fa-link"></i> Google Apps Script Web App URL</label>
+                            <input type="text" id="googleScriptUrl" placeholder="https://script.google.com/macros/s/.../exec">
+                            <small>Deploy your Google Apps Script and paste the endpoint. The script must accept POST/GET with sheetName & action.</small>
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-key"></i> API Key (optional security)</label>
+                            <input type="password" id="apiKey" placeholder="leave blank if not used">
+                        </div>
+                        <button id="saveConfigBtn" class="btn-primary"><i class="fas fa-save"></i> Save Configuration</button>
+                        <button id="testConnectionBtn" class="btn-outline"><i class="fas fa-waveform"></i> Test Connection</button>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i> Your local data is stored in browser IndexedDB. Use "Push to Sheets" to upload and "Fetch from Sheets" to pull data from Google Sheets. Sheets structure required: "users", "mexc", "emails" tabs with matching columns.
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL FOR ADD/EDIT -->
+    <div id="genericModal" class="modal">
+        <div class="modal-content glass-modal">
+            <div class="modal-header"><span id="modalTitle">Add Record</span><span class="close-modal">&times;</span></div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer"><button id="modalSaveBtn" class="btn-primary">Save</button><button id="modalCancelBtn" class="btn-secondary">Cancel</button></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
